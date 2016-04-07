@@ -1,0 +1,10 @@
+---
+- src: git+https://github.com/projectatomic/ansible-role-osbs-master.git
+  scm: git
+  version: master
+  name: osbs-master
+
+- src: git+https://github.com/projectatomic/ansible-role-pulp-secret.git
+  scm: git
+  version: master
+  name: pulp-secret

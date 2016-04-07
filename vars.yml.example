@@ -1,0 +1,21 @@
+---
+# OpenShift Dedicated namespace
+osbs_namespace: best-namespace
+
+# Service Accounts to create
+osbs_service_accounts:
+  - koji
+
+# Permissions
+osbs_readonly_users: []
+osbs_readonly_groups: []
+osbs_readwrite_users: []
+osbs_readwrite_groups:
+  - system:authenticated
+  - system:unauthenticated
+osbs_admin_users: []
+osbs_admin_groups: []
+
+# Where to look for pulp keys
+pulp_secret_local_dir: /home/user/.pulp
+pulp_secret_can_fail: true

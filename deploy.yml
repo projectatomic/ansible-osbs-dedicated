@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars:
+    osbs_openshift_home: tmp
+    osbs_environment: {}
+    pulp_secret_remote_dir: "{{ osbs_openshift_home }}"
+    pulp_secret_environment: "{{ osbs_environment }}"
+    pulp_secret_namespace: "{{ osbs_namespace }}"
+  vars_files:
+  - vars.yml
+  roles:
+  - osbs-master
+  - pulp-secret
