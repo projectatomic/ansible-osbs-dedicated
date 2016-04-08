@@ -1,7 +1,7 @@
 Playbook for deploying OSBS into [OpenShift Dedicated](https://www.openshift.com/dedicated/)
 ============================================================================================
 
-1. Rename `vars.yml.example` to `vars.yml` and edit it to suit your needs.
+1. Rename `config.yml.example` to `config.yml` and edit it to suit your needs.
 
 2. Use `oc login` to log into your OpenShift instance.
 

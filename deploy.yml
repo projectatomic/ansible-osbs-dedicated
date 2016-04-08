@@ -1,13 +1,18 @@
 ---
-- hosts: all
-  vars:
-    osbs_openshift_home: tmp
-    osbs_environment: {}
-    osbs_secret_remote_dir: "{{ osbs_openshift_home }}"
+- name: users and permissions
+  hosts: all
   vars_files:
-  - vars.yml
+  - hardcoded-vars.yml
+  - config.yml
   roles:
   - osbs-master
+
+- name: pulp secrets
+  hosts: all
+  vars_files:
+  - hardcoded-vars.yml
+  - config.yml
+  roles:
   - role: osbs-secret
     osbs_secret_name: "{{ pulp_secret_name }}"
     osbs_secret_files:
@@ -15,6 +20,13 @@
       dest: pulp.cer
     - source: "{{ pulp_secret_local_dir }}/pulp.key"
       dest: pulp.key
+
+- name: koji secrets
+  hosts: all
+  vars_files:
+  - hardcoded-vars.yml
+  - config.yml
+  roles:
   - role: osbs-secret
     osbs_secret_name: "{{ koji_secret_name }}"
     osbs_secret_files:
