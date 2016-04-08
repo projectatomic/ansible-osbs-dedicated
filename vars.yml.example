@@ -16,6 +16,9 @@ osbs_readwrite_groups:
 osbs_admin_users: []
 osbs_admin_groups: []
 
+# Limit on the number of running pods - undefine or set to -1 to remove limit
+osbs_master_max_pods: -1
+
 # Where to look for pulp keys
 pulp_secret_local_dir: /home/user/.pulp
 pulp_secret_can_fail: true
