@@ -19,6 +19,14 @@ osbs_admin_groups: []
 # Limit on the number of running pods - undefine or set to -1 to remove limit
 osbs_master_max_pods: -1
 
-# Where to look for pulp keys
+# Set to true if you want to skip importing secrets in case the secret files
+# are not found.
+osbs_secret_can_fail: true
+
+# Absolute path where to look for pulp keys
 pulp_secret_local_dir: /home/user/.pulp
-pulp_secret_can_fail: true
+pulp_secret_name: pulpsecret
+
+# Absolute path where to look for koji keys
+koji_secret_local_dir: /home/user/directory-with-koji-certificates
+koji_secret_name: kojisecret

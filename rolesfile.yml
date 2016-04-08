@@ -4,7 +4,7 @@
   version: master
   name: osbs-master
 
-- src: git+https://github.com/projectatomic/ansible-role-pulp-secret.git
+- src: git+https://github.com/projectatomic/ansible-role-osbs-secret.git
   scm: git
   version: master
-  name: pulp-secret
+  name: osbs-secret
