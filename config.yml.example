@@ -11,6 +11,7 @@ osbs_readonly_users: []
 osbs_readonly_groups: []
 osbs_readwrite_users:
   - system:serviceaccount:{{ osbs_namespace }}:koji
+  - system:serviceaccount:{{ osbs_namespace }}:builder
 osbs_readwrite_groups:
   - system:authenticated
 osbs_admin_users: []
