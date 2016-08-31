@@ -1,4 +1,4 @@
 ---
 osbs_environment: {}
-osbs_openshift_home: tmp
+osbs_openshift_home: /tmp
 osbs_secret_remote_dir: "{{ osbs_openshift_home }}"
