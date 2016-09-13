@@ -12,3 +12,83 @@ Playbook for deploying OSBS into [OpenShift Dedicated](https://www.openshift.com
 
 4. Run `deploy.sh`. Any arguments will be passed to `ansible-playbook` - you
    might want to use e.g. `--verbose`.
+
+
+Requirements for self-hosted OSE instance
+=========================================
+
+A bare self-hosted OSE installation should be sufficient for OSBS to work,
+as it doesn't require routers, docker registry or SDN to function.
+
+
+Role Variables
+==============
+
+Specify project namespace
+```
+osbs_namespace: best-namespace
+```
+
+Create service accounts
+
+Depending on your configuration OSBS needs to setup service accounts 
+to allow various services (e.g. koji) to communicate with OSBS.
+```
+osbs_service_accounts:
+  - koji
+```
+
+Set permissions for users
+```
+osbs_readonly_users: []
+osbs_readonly_groups: []
+osbs_readwrite_users:
+  - system:serviceaccount:{{ osbs_namespace }}:koji
+  - system:serviceaccount:{{ osbs_namespace }}:builder
+osbs_readwrite_groups:
+  - system:authenticated
+osbs_admin_users: []
+osbs_admin_groups: []
+```
+
+Set maximum number of simultaneous builds
+```
+osbs_master_max_pods: -1
+```
+
+Skip errors on importing secrets, if those are not required
+```
+osbs_secret_can_fail: true
+```
+
+Create Openshift secrets for pulp, reading certification from local dir
+```
+pulp_secret_local_dir: /home/user/.pulp
+pulp_secret_name: pulpsecret
+```
+
+Koji credentials setup
+```
+koji_secret_local_dir: /home/user/directory-with-koji-certificates
+koji_secret_name: kojisecret
+```
+
+Hardcoded vars
+==============
+
+The following vars are used in other roles:
+
+Set environment variables (e.g. http_proxy) to be used for some commands
+```
+osbs_environment: {}
+```
+
+Temporary folder to store files: e.g. generated configs
+```
+osbs_openshift_home: /tmp
+```
+
+Temporary folder to store generated secret files (will be cleaned up on exit)
+```
+osbs_secret_remote_dir: "{{ osbs_openshift_home }}"
+```
