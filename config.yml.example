@@ -31,3 +31,7 @@ pulp_secret_name: pulpsecret
 # Absolute path where to look for koji keys
 koji_secret_local_dir: /home/user/directory-with-koji-certificates
 koji_secret_name: kojisecret
+
+# Absolute path for V2 registry .dockercfg
+v2_registry_secret_local_file: /home/user/.dockercfg
+v2_registry_secret_name: v2-registry-dockercfg
