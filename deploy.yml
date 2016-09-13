@@ -9,6 +9,7 @@
 
 - name: pulp secrets
   hosts: all
+  gather_facts: false
   vars_files:
   - hardcoded-vars.yml
   - config.yml
@@ -20,9 +21,11 @@
       dest: pulp.cer
     - source: "{{ pulp_secret_local_dir }}/pulp.key"
       dest: pulp.key
+  tags: [pulpsecrets]
 
 - name: koji secrets
   hosts: all
+  gather_facts: false
   vars_files:
   - hardcoded-vars.yml
   - config.yml
@@ -36,3 +39,18 @@
       dest: ca
     - source: "{{ koji_secret_local_dir }}/serverca"
       dest: serverca
+
+- name: V2 registry secrets
+  hosts: all
+  gather_facts: false
+  vars_files:
+  - hardcoded-vars.yml
+  - config.yml
+  roles:
+  - role: osbs-secret
+    osbs_secret_name: "{{ v2_registry_secret_name }}"
+    osbs_secret_type: kubernetes.io/dockercfg
+    osbs_secret_files:
+    - source: "{{ v2_registry_secret_local_file }}"
+      dest: .dockercfg
+  tags: [secrets]

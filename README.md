@@ -73,6 +73,15 @@ koji_secret_local_dir: /home/user/directory-with-koji-certificates
 koji_secret_name: kojisecret
 ```
 
+V2 registry credentials (.dockercfg)
+
+Specify the path to the local JSON-formatted .dockercfg file, and the name of the Kubernetes secret that will be created to hold it.
+
+```
+v2_registry_secret_local_file: /home/user/.dockercfg
+v2_registry_secret_name: v2-registry-dockercfg
+```
+
 Hardcoded vars
 ==============
 
